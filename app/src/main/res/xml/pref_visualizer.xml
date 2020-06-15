@@ -1,0 +1,12 @@
+<PreferenceScreen
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <CheckBoxPreference
+        android:defaultValue="@bool/pref_show_bass_default"
+        app:defaultValue="true"
+        app:key="@string/pref_show_basskey"
+        app:summaryOff="@string/pref_show_false"
+        app:summaryOn="@string/pref_show_true"
+        app:title="@string/pref_show_bass_level"/>
+</PreferenceScreen>

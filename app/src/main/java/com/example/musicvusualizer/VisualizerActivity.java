@@ -3,16 +3,21 @@ package com.example.musicvusualizer;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
+import androidx.preference.PreferenceManager;
 
 import android.Manifest;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.example.musicvusualizer.audioVisual.AudioInputReader;
 import com.example.musicvusualizer.audioVisual.VisualizerView;
- public class VisualizerActivity extends AppCompatActivity{
+ public class VisualizerActivity extends AppCompatActivity implements SharedPreferences.OnSharedPreferenceChangeListener{
 
             private static final int MY_PERMISSION_RECORD_AUDIO_REQUEST_CODE = 88;
             private VisualizerView mVisualizerView;
@@ -23,16 +28,22 @@ import com.example.musicvusualizer.audioVisual.VisualizerView;
                 super.onCreate(savedInstanceState);
                 setContentView(R.layout.activity_visualizer);
                 mVisualizerView = findViewById(R.id.activity_visualizer);
-                defaultSetup();
+                setUpSharedPrefrences();
                 setupPermissions();
             }
 
-            private void defaultSetup() {
-                mVisualizerView.setShowBass(true);
+            private void setUpSharedPrefrences() {
+                //getting shared pref instance
+                SharedPreferences sharedPreferences  = PreferenceManager.getDefaultSharedPreferences(this);
+                //setting from prefrence
+                mVisualizerView.setShowBass(sharedPreferences.getBoolean(getString(R.string.pref_show_basskey),true));
                 mVisualizerView.setShowMid(true);
                 mVisualizerView.setShowTreble(true);
                 mVisualizerView.setMinSizeScale(1);
                 mVisualizerView.setColor(getString(R.string.pref_color_green_value));
+                // ---------------- resister the listner ----------------
+                sharedPreferences.registerOnSharedPreferenceChangeListener(this);
+
             }
 
             /**
@@ -92,5 +103,44 @@ import com.example.musicvusualizer.audioVisual.VisualizerView;
 
                 }
             }
-        }
+
+     /**
+      * ------------------------Menu--------------------------
+      */
+     @Override
+     public boolean onCreateOptionsMenu(Menu menu) {
+         getMenuInflater().inflate(R.menu.visulizer_menu,menu);
+         return true;
+     }
+
+     @Override
+     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+         int id = item.getItemId();
+         if (id==R.id.action_settings){
+             Intent intent = new Intent(this,SettingsActivity.class);
+             startActivity(intent);
+             return true;
+         }
+         return super.onOptionsItemSelected(item);
+     }
+     // ============================== Shared Prefrence==========================
+// -------------------------- if a shared pref changed --------------------------
+     @Override
+     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+         if (key.equals(getString(R.string.pref_show_basskey))){
+             mVisualizerView.setShowBass(sharedPreferences.getBoolean(key,getResources().getBoolean(R.bool.pref_show_bass_default)));
+         }
+
+     }
+
+     /**
+      * Activity Life Cycle
+      */
+     @Override
+     protected void onDestroy() {
+         //unregister the listner to avoide memory leaks
+         PreferenceManager.getDefaultSharedPreferences(this).unregisterOnSharedPreferenceChangeListener(this);
+         super.onDestroy();
+     }
+ }
 
