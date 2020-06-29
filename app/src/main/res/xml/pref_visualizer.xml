@@ -1,12 +1,38 @@
-<PreferenceScreen
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <CheckBoxPreference
         android:defaultValue="@bool/pref_show_bass_default"
-        app:defaultValue="true"
-        app:key="@string/pref_show_basskey"
-        app:summaryOff="@string/pref_show_false"
-        app:summaryOn="@string/pref_show_true"
-        app:title="@string/pref_show_bass_level"/>
+        android:key="@string/pref_show_basskey"
+        android:summaryOff="@string/pref_show_false"
+        android:summaryOn="@string/pref_show_true"
+        android:title="@string/pref_show_bass_level" />
+
+    <CheckBoxPreference
+        android:defaultValue="@bool/pref_show_mid_default"
+        android:key="@string/pref_show_midkey"
+        android:summaryOff="@string/pref_show_false"
+        android:summaryOn="@string/pref_show_true"
+        android:title="@string/pref_show_mid_range" />
+
+    <CheckBoxPreference
+        android:defaultValue="@bool/pref_show_trable_default"
+        android:key="@string/pref_show_trebelkey"
+        android:summaryOff="@string/pref_show_false"
+        android:summaryOn="@string/pref_show_true"
+        android:title="@string/pref_show_trable" />
+
+    <EditTextPreference
+        android:key="@string/pref_size_key"
+        android:title="@string/pref_size_lebel"
+        app:defaultValue="@string/default_pref" />
+
+
+    <ListPreference
+        android:entries="@array/pref_color_option_lebel"
+        android:entryValues="@array/pref_color_option_values"
+        android:key="@string/color_key"
+        android:title="@string/pref_color_lebel" />
+
+
 </PreferenceScreen>

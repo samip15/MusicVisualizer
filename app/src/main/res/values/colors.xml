@@ -15,4 +15,6 @@
     <color name="shapeGreen">#4CAF50</color>
     <color name="trailGreen">#1B5E20</color>
     <color name="backgroundGreen">#C8E6C9</color>
+    <!-- simmer background - - - -->
+    <color name="background">#dddddd</color>
 </resources>

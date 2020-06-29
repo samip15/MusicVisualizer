@@ -18,6 +18,8 @@ public class SettingsActivity extends AppCompatActivity {
         if (actionBar!=null){
             actionBar.setDisplayShowHomeEnabled(true);
         }
+
+
     }
 
 //    @Override

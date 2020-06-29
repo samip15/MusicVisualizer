@@ -23,5 +23,18 @@
     <string name="pref_show_false">Hidden</string>
     <string name="pref_show_true">Shown</string>
     <string name="pref_show_basskey" translatable="false">show_bass</string>
+    <string name="pref_show_midkey" translatable="false">show_Mid</string>
+    <string name="pref_show_trebelkey" translatable="false">show_Treble</string>
     <string name="pref_show_bass_level">Show Bass</string>
+    <string name="pref_show_mid_range">Show Mid</string>
+    <string name="pref_show_trable">Show Trable</string>
+    <string name="pref_color_lebel">Shape Color</string>
+    <string name="pref_color_lebel_red">Red</string>
+    <string name="pref_color_lebel_blue">Blue</string>
+    <string name="pref_color_lebel_green">Green</string>
+    <string name="color_key">Color</string>
+    <!-- multiplier - - -->
+    <string name="default_pref" translatable="false">1</string>
+    <string name="pref_size_key" translatable="false">Size</string>
+    <string name="pref_size_lebel">Size Multiplier</string>
 </resources>
